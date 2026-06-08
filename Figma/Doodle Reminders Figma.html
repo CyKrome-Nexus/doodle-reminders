@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle Reminders - Figma Import UI Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#7C5CFF',
+                            bg: '#0F111A',
+                            card: '#1A1D2D',
+                            textMuted: '#8F94A8',
+                            water: '#3B82F6',
+                            standup: '#10B981',
+                            meds: '#EF4444',
+                            shop: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #05070B;
+            color: #FFFFFF;
+        }
+        /* Fixes for seamless Figma vector conversion */
+        .scroller::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="p-10 font-sans antialiased">
+
+    <div class="flex flex-wrap gap-12 items-start justify-center">
+
+        <div class="w-[360px] bg-brand-bg rounded-[32px] p-8 border border-gray-800 shadow-2xl">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 bg-brand-primary rounded-2xl flex items-center justify-center shadow-lg shadow-brand-primary/30">
+                    <span class="text-white text-xl">🔔</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-white">Doodle</h1>
+                    <p class="text-xs text-brand-primary font-semibold tracking-wider uppercase">Reminders</p>
+                </div>
+            </div>
+
+            <p class="text-sm text-brand-textMuted italic mb-8">"Never forget what matters."</p>
+
+            <div class="mb-8">
+                <h3 class="text-xs font-bold text-brand-textMuted uppercase tracking-widest mb-3">Colors</h3>
+                <div class="flex flex-wrap gap-2">
+                    <div class="w-8 h-8 rounded-full bg-brand-primary ring-2 ring-offset-2 ring-offset-brand-bg ring-transparent"></div>
+                    <div class="w-8 h-8 rounded-full bg-brand-water"></div>
+                    <div class="w-8 h-8 rounded-full bg-brand-standup"></div>
+                    <div class="w-8 h-8 rounded-full bg-brand-shop"></div>
+                    <div class="w-8 h-8 rounded-full bg-brand-meds"></div>
+                    <div class="w-8 h-8 rounded-full bg-brand-card"></div>
+                </div>
+            </div>
+
+            <div class="mb-8 space-y-3">
+                <h3 class="text-xs font-bold text-brand-textMuted uppercase tracking-widest mb-1">Typography</h3>
+                <div class="flex justify-between items-baseline"><span class="text-2xl font-bold">Heading 1</span><span class="text-xs text-brand-textMuted">24 / Bold</span></div>
+                <div class="flex justify-between items-baseline"><span class="text-xl font-semibold">Heading 2</span><span class="text-xs text-brand-textMuted">20 / SemiBold</span></div>
+                <div class="flex justify-between items-baseline"><span class="text-base font-normal">Body 1</span><span class="text-xs text-brand-textMuted">16 / Regular</span></div>
+                <div class="flex justify-between items-baseline"><span class="text-sm font-normal text-brand-textMuted">Body 2</span><span class="text-xs text-brand-textMuted">14 / Regular</span></div>
+                <div class="flex justify-between items-baseline"><span class="text-xs font-medium text-brand-textMuted">Caption</span><span class="text-xs text-brand-textMuted">12 / Medium</span></div>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold text-brand-textMuted uppercase tracking-widest mb-4">Components</h3>
+                <button class="w-full bg-brand-primary text-white py-3 px-6 rounded-2xl font-semibold text-sm mb-3 shadow-lg shadow-brand-primary/20">Primary Button</button>
+                <button class="w-full bg-brand-card text-white/90 py-3 px-6 rounded-2xl font-semibold text-sm mb-4 border border-gray-800">Secondary Button</button>
+                
+                <div class="bg-brand-card p-4 rounded-2xl flex items-center justify-between border border-gray-800/50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-5 h-5 rounded-full border-2 border-brand-water flex items-center justify-center"></div>
+                        <div>
+                            <p class="text-sm font-medium text-white">Drink Water</p>
+                            <p class="text-xs text-brand-water mt-0.5">Today, 9:00 AM</p>
+                        </div>
+                    </div>
+                    <span class="text-lg">💧</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-[390px] h-[844px] bg-brand-bg rounded-[48px] p-6 flex flex-col justify-between border-[6px] border-gray-800 shadow-2xl relative overflow-hidden">
+            
+            <div class="w-full flex justify-between items-center px-4 pt-2 text-xs font-semibold text-white/90">
+                <span>9:41</span>
+                <div class="flex items-center gap-1.5">
+                    <span>📶</span><span>🔋</span>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto scroller pt-6 pb-4 space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-brand-textMuted">Good morning,</p>
+                        <h2 class="text-2xl font-bold text-white mt-0.5">Alex 👋</h2>
+                    </div>
+                    <button class="w-10 h-10 bg-brand-card rounded-full flex items-center justify-center border border-gray-800 text-lg">🔔</button>
+                </div>
+
+                <div class="flex gap-2 overflow-x-auto scroller py-1">
+                    <span class="px-4 py-2 bg-brand-primary rounded-xl text-xs font-semibold text-white shrink-0">All</span>
+                    <span class="px-4 py-2 bg-brand-card rounded-xl text-xs font-medium text-brand-textMuted shrink-0 border border-gray-800">Today</span>
+                    <span class="px-4 py-2 bg-brand-card rounded-xl text-xs font-medium text-brand-textMuted shrink-0 border border-gray-800">Upcoming</span>
+                    <span class="px-4 py-2 bg-brand-card rounded-xl text-xs font-medium text-brand-textMuted shrink-0 border border-gray-800">Completed</span>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-sm font-bold text-white">Today</h3>
+                        <span class="bg-brand-card text-brand-textMuted px-2 py-0.5 rounded-full text-[10px] border border-gray-800 font-bold">3</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-brand-card p-4 rounded-2xl flex items-center justify-between border border-gray-800/40">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded-full border-2 border-brand-water"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-white">Drink Water</p>
+                                    <p class="text-xs text-brand-water mt-0.5">Today, 9:00 AM</p>
+                                </div>
+                            </div>
+                            <span class="text-base">💧</span>
+                        </div>
+                        <div class="bg-brand-card p-4 rounded-2xl flex items-center justify-between border border-gray-800/40">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded-full border-2 border-brand-standup"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-white">Team Standup</p>
+                                    <p class="text-xs text-brand-standup mt-0.5">Today, 10:30 AM</p>
+                                </div>
+                            </div>
+                            <span class="text-base">🗓️</span>
+                        </div>
+                        <div class="bg-brand-card p-4 rounded-2xl flex items-center justify-between border border-gray-800/40">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded-full border-2 border-brand-meds"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-white">Take Medication</p>
+                                    <p class="text-xs text-brand-meds mt-0.5">Today, 8:00 PM</p>
+                                </div>
+                            </div>
+                            <span class="text-base">💊</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <h3 class="text-sm font-bold text-white">Upcoming</h3>
+                        <span class="bg-brand-card text-brand-textMuted px-2 py-0.5 rounded-full text-[10px] border border-gray-800 font-bold">2</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-brand-card p-4 rounded-2xl flex items-center justify-between border border-gray-800/40">
+                            <div class="flex items-center gap-3">
+                                <div class="w-5 h-5 rounded-full border-2 border-brand-shop"></div>
+                                <div>
+                                    <p class="text-sm font-medium text-white">Grocery Shopping</p>
+                                    <p class="text-xs text-brand-shop mt-0.5">Tomorrow, 11:00 AM</p>
+                                </div>
+                            </div>
+                            <span class="text-base">🛍️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full bg-brand-bg/90 backdrop-blur-md border-t border-gray-900 pt-3 pb-2 flex justify-between items-center px-4 relative z-10">
+                <div class="flex flex-col items-center gap-1 opacity-100 cursor-pointer">
+                    <span class="text-xl text-brand-primary">🏠</span>
+                    <span class="text-[10px] font-medium text-brand-primary">Home</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 opacity-40 cursor-pointer">
+                    <span class="text-xl">📅</span>
+                    <span class="text-[10px] font-medium text-brand-textMuted">Calendar</span>
+                </div>
+                <div class="-mt-8 w-14 h-14 bg-brand-primary rounded-full flex items-center justify-center shadow-xl shadow-brand-primary/30 border-4 border-brand-bg cursor-pointer">
+                    <span class="text-white text-2xl font-bold">+</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 opacity-40 cursor-pointer">
+                    <span class="text-xl">🗂️</span>
+                    <span class="text-[10px] font-medium text-brand-textMuted">Categories</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 opacity-40 cursor-pointer">
+                    <span class="text-xl">⚙️</span>
+                    <span class="text-[10px] font-medium text-brand-textMuted">Settings</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-[390px] h-[844px] bg-brand-bg rounded-[48px] p-6 flex flex-col justify-between border-[6px] border-gray-800 shadow-2xl relative overflow-hidden">
+            
+            <div class="w-full flex justify-between items-center px-4 pt-2 text-xs font-semibold text-white/90">
+                <span>9:41</span>
+                <div class="flex items-center gap-1.5">
+                    <span>📶</span><span>🔋</span>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto scroller pt-6 space-y-5">
+                <div class="flex justify-between items-center">
+                    <button class="text-lg text-white">✕</button>
+                    <h2 class="text-base font-semibold text-white">Add Reminder</h2>
+                    <button class="text-sm font-semibold text-brand-primary">✓</button>
+                </div>
+
+                <div class="pt-2">
+                    <input type="text" placeholder="What's the reminder?" class="w-full bg-transparent border-none text-lg text-white placeholder-brand-textMuted/60 focus:outline-none">
+                </div>
+
+                <hr class="border-gray-950">
+
+                <div class="space-y-4">
+                    <div class="bg-brand-card rounded-2xl p-4 flex justify-between items-center border border-gray-800/40">
+                        <div class="space-y-0.5">
+                            <span class="text-xs text-brand-textMuted font-medium">Date</span>
+                            <p class="text-sm font-medium text-white">May 24, 2024</p>
+                        </div>
+                        <span class="text-lg opacity-70">📅</span>
+                    </div>
+
+                    <div class="bg-brand-card rounded-2xl p-4 flex justify-between items-center border border-gray-800/40">
+                        <div class="space-y-0.5">
+                            <span class="text-xs text-brand-textMuted font-medium">Time</span>
+                            <p class="text-sm font-medium text-white">9:00 AM</p>
+                        </div>
+                        <span class="text-lg opacity-70">🕒</span>
+                    </div>
+
+                    <div class="bg-brand-card rounded-2xl p-4 flex justify-between items-center border border-gray-800/40">
+                        <div class="space-y-0.5">
+                            <span class="text-xs text-brand-textMuted font-medium">Repeat</span>
+                            <p class="text-sm font-medium text-white">Does not repeat</p>
+                        </div>
+                        <span class="text-sm text-brand-textMuted">🔄</span>
+                    </div>
+
+                    <div class="bg-brand-card rounded-2xl p-4 flex justify-between items-center border border-gray-800/40">
+                        <div class="space-y-0.5">
+                            <span class="text-xs text-brand-textMuted font-medium">Category</span>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <div class="w-2 h-2 rounded-full bg-brand-primary"></div>
+                                <p class="text-sm font-medium text-white">Personal</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-brand-textMuted">❯</span>
+                    </div>
+
+                    <div class="bg-brand-card rounded-2xl p-4 border border-gray-800/40 space-y-1">
+                        <span class="text-xs text-brand-textMuted font-medium">Notes <span class="text-[10px] opacity-60">(optional)</span></span>
+                        <textarea placeholder="Add notes..." rows="2" class="w-full bg-transparent border-none text-sm text-white placeholder-brand-textMuted/40 focus:outline-none resize-none"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="text-xs text-brand-textMuted font-medium px-1">Add Tags</span>
+                        <div class="flex gap-2">
+                            <span class="px-4 py-1.5 bg-brand-card border border-gray-800 text-xs rounded-full font-medium text-brand-primary">Health</span>
+                            <span class="px-4 py-1.5 bg-brand-card border border-gray-800 text-xs rounded-full font-medium text-brand-primary">Daily</span>
+                            <span class="w-8 h-7 bg-brand-card border border-gray-800 flex items-center justify-center rounded-full text-xs font-bold text-brand-textMuted">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-4"></div>
+        </div>
+
+
+        <div class="w-[390px] h-[844px] bg-brand-bg rounded-[48px] p-6 flex flex-col justify-between border-[6px] border-gray-800 shadow-2xl relative overflow-hidden">
+            
+            <div class="w-full flex justify-between items-center px-4 pt-2 text-xs font-semibold text-white/90">
+                <span>9:41</span>
+                <div class="flex items-center gap-1.5">
+                    <span>📶</span><span>🔋</span>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto scroller pt-6 space-y-6">
+                <div class="flex justify-between items-center">
+                    <button class="text-sm font-semibold text-brand-textMuted">❮ Back</button>
+                    <h2 class="text-sm font-semibold text-white">Reminder Details</h2>
+                    <button class="text-xl font-semibold text-brand-textMuted">•••</button>
+                </div>
+
+                <div class="flex items-start gap-4 pt-4">
+                    <div class="w-6 h-6 rounded-full border-[3px] border-brand-standup flex-shrink-0 mt-1"></div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white tracking-tight">Team Standup</h1>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-center gap-4">
+                        <span class="text-xl w-6 text-center">📅</span>
+                        <div>
+                            <p class="text-sm font-medium text-white">Today, May 24, 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <span class="text-xl w-6 text-center">🕒</span>
+                        <div>
+                            <p class="text-sm font-medium text-white">10:30 AM</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <span class="text-xl w-6 text-center">🔄</span>
+                        <div>
+                            <p class="text-sm font-medium text-white">Does not repeat</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <span class="text-xl w-6 text-center">📁</span>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-brand-standup"></div>
+                            <p class="text-sm font-medium text-white">Work</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-900 space-y-2">
+                        <h4 class="text-xs font-bold text-brand-textMuted uppercase tracking-wider">Notes</h4>
+                        <p class="text-sm text-white/90 leading-relaxed bg-brand-card p-4 rounded-2xl border border-gray-800/40">
+                            Daily standup meeting with the product team. Prepare status updates on Jira boards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 pb-4">
+                <button class="w-full bg-brand-card text-white py-3.5 px-6 rounded-2xl font-semibold text-sm border border-gray-800/80 transition active:scale-95">Edit Reminder</button>
+                <button class="w-full text-brand-meds py-2 px-6 rounded-2xl font-semibold text-xs tracking-wide uppercase opacity-90 transition active:scale-95">Delete Reminder</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

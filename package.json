@@ -1,0 +1,14 @@
+{
+  "name": "doodle-reminders",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "app",
+    "backend"
+  ],
+  "devDependencies": {
+    "@nx/expo": "22.7.5",
+    "@nx/react-native": "22.7.5",
+    "nx": "22.7.5"
+  }
+}

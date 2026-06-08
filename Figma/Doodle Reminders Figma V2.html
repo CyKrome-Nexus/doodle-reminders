@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle Reminders - Perfect High Fidelity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            bg: '#10111A',
+                            surface: '#1A1C29',
+                            primary: '#7C5CFF',
+                            primaryHover: '#6A4AE6',
+                            text: '#FFFFFF',
+                            muted: '#8F94A8',
+                            border: '#2A2C3D',
+                            water: '#4DA3FF',
+                            standup: '#34C759',
+                            meds: '#FF6B6B',
+                            shop: '#FFB020',
+                            finance: '#4DA3FF'
+                        }
+                    },
+                    boxShadow: {
+                        'glow': '0 8px 24px -6px rgba(124, 92, 255, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050508; color: #FFFFFF; -webkit-font-smoothing: antialiased; padding: 60px; width: max-content; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Device Frame Styling */
+        .device-frame {
+            width: 390px;
+            height: 844px;
+            background-color: #10111A;
+            border-radius: 40px;
+            border: 8px solid #202230;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex gap-12 items-start">
+
+        <div class="w-[320px] bg-brand-bg rounded-[32px] p-8 border border-brand-border flex flex-col gap-10 shrink-0">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-12 h-12 bg-brand-primary rounded-2xl flex items-center justify-center shadow-glow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <div>
+                        <h1 class="text-[22px] font-bold leading-tight text-white">Doodle</h1>
+                        <h2 class="text-[22px] font-bold leading-tight text-brand-primary">Reminders</h2>
+                    </div>
+                </div>
+                <p class="text-[14px] text-brand-muted mt-4">Never forget what<br>matters.</p>
+                <div class="w-12 h-[2px] bg-brand-primary mt-2"></div>
+            </div>
+
+            <div>
+                <h3 class="text-[14px] font-bold text-white mb-4">Colors</h3>
+                <div class="flex gap-3 mb-2">
+                    <div class="w-6 h-6 rounded-full bg-[#8B5CF6]"></div>
+                    <div class="w-6 h-6 rounded-full bg-brand-primary ring-2 ring-offset-2 ring-offset-brand-bg ring-brand-primary"></div>
+                    <div class="w-6 h-6 rounded-full bg-brand-standup"></div>
+                    <div class="w-6 h-6 rounded-full bg-brand-shop"></div>
+                    <div class="w-6 h-6 rounded-full bg-brand-meds"></div>
+                    <div class="w-6 h-6 rounded-full bg-brand-water"></div>
+                    <div class="w-6 h-6 rounded-full bg-[#9CA3AF]"></div>
+                    <div class="w-6 h-6 rounded-full bg-[#1F2937]"></div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-[14px] font-bold text-white mb-4">Typography</h3>
+                <div class="flex items-end gap-4 mb-6">
+                    <span class="text-[32px] font-bold leading-none">Aa</span>
+                    <span class="text-[14px] text-brand-muted mb-1">Poppins</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="flex justify-between items-center"><span class="text-[24px] font-bold">Heading 1</span><span class="text-[12px] text-brand-muted">24 / Bold</span></div>
+                    <div class="flex justify-between items-center"><span class="text-[20px] font-semibold">Heading 2</span><span class="text-[12px] text-brand-muted">20 / SemiBold</span></div>
+                    <div class="flex justify-between items-center"><span class="text-[16px] font-normal">Body 1</span><span class="text-[12px] text-brand-muted">16 / Regular</span></div>
+                    <div class="flex justify-between items-center"><span class="text-[14px] font-normal text-brand-muted">Body 2</span><span class="text-[12px] text-brand-muted">14 / Regular</span></div>
+                    <div class="flex justify-between items-center"><span class="text-[12px] font-medium text-brand-muted">Caption</span><span class="text-[12px] text-brand-muted">12 / Medium</span></div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-[14px] font-bold text-white mb-4">Components</h3>
+                <div class="flex flex-col gap-4">
+                    <button class="w-full bg-brand-primary text-white py-[14px] rounded-[16px] font-semibold text-[14px]">Primary Button</button>
+                    <button class="w-full bg-brand-surface border border-brand-border text-white py-[14px] rounded-[16px] font-semibold text-[14px]">Secondary Button</button>
+                    
+                    <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                        <div class="flex items-center gap-[12px]">
+                            <div class="w-[20px] h-[20px] rounded-full border-[2px] border-brand-water"></div>
+                            <div class="flex flex-col gap-1">
+                                <span class="text-[14px] font-medium text-white leading-none">Drink Water</span>
+                                <span class="text-[12px] text-brand-water leading-none">Today, 9:00 AM</span>
+                            </div>
+                        </div>
+                        <span class="text-[16px]">💧</span>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-brand-surface w-fit px-[12px] py-[6px] rounded-full border border-brand-border">
+                        <div class="w-2 h-2 rounded-full bg-brand-primary"></div>
+                        <span class="text-[12px] text-brand-primary font-medium">Personal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="flex flex-col gap-12">
+            
+            <div class="flex gap-12">
+                
+                <div class="device-frame">
+                    <div class="flex justify-between items-center px-6 pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+                    
+                    <div class="flex-1 px-6 pt-4 overflow-hidden flex flex-col gap-6">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-[14px] text-brand-muted mb-1">Good morning,</p>
+                                <h2 class="text-[24px] font-bold">Alex 👋</h2>
+                            </div>
+                            <div class="w-[40px] h-[40px] rounded-full border border-brand-border flex items-center justify-center relative">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                <div class="w-2 h-2 bg-brand-primary rounded-full absolute top-2 right-2 border border-brand-bg"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 hide-scrollbar overflow-x-auto">
+                            <span class="px-5 py-2 bg-brand-primary rounded-full text-[14px] font-semibold">All</span>
+                            <span class="px-5 py-2 bg-brand-surface rounded-full text-[14px] text-brand-muted font-medium">Today</span>
+                            <span class="px-5 py-2 bg-brand-surface rounded-full text-[14px] text-brand-muted font-medium">Upcoming</span>
+                            <span class="px-5 py-2 bg-brand-surface rounded-full text-[14px] text-brand-muted font-medium">Completed</span>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="text-[16px] font-bold">Today</h3>
+                                <span class="bg-brand-surface text-brand-muted px-2 py-0.5 rounded-full text-[12px] font-medium">3</span>
+                            </div>
+                            
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-5 h-5 rounded-full border-2 border-brand-water"></div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[14px] font-medium">Drink Water</span>
+                                        <span class="text-[12px] text-brand-water">Today, 9:00 AM</span>
+                                    </div>
+                                </div>
+                                <span class="text-[18px]">💧</span>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-5 h-5 rounded-full border-2 border-brand-standup"></div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[14px] font-medium">Team Standup</span>
+                                        <span class="text-[12px] text-brand-standup">Today, 10:30 AM</span>
+                                    </div>
+                                </div>
+                                <span class="text-[18px]">🗓️</span>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-5 h-5 rounded-full border-2 border-brand-meds"></div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[14px] font-medium">Take Medication</span>
+                                        <span class="text-[12px] text-brand-meds">Today, 8:00 PM</span>
+                                    </div>
+                                </div>
+                                <span class="text-[18px]">💊</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="text-[16px] font-bold">Upcoming</h3>
+                                <span class="bg-brand-surface text-brand-muted px-2 py-0.5 rounded-full text-[12px] font-medium">2</span>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-5 h-5 rounded-full border-2 border-brand-shop"></div>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-[14px] font-medium">Grocery Shopping</span>
+                                        <span class="text-[12px] text-brand-shop">Tomorrow, 11:00 AM</span>
+                                    </div>
+                                </div>
+                                <span class="text-[18px]">🛍️</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-0 w-full h-[90px] bg-[#10111A]/90 backdrop-blur-lg border-t border-brand-border px-6 flex justify-between items-center pb-4">
+                        <div class="flex flex-col items-center gap-1 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                            <span class="text-[10px] text-brand-primary font-medium">Home</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <span class="text-[10px] font-medium">Calendar</span>
+                        </div>
+                        
+                        <div class="w-[56px] h-[56px] bg-brand-primary rounded-full flex items-center justify-center shadow-glow -translate-y-5 border-[6px] border-[#10111A] cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            <span class="text-[10px] font-medium">Categories</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            <span class="text-[10px] font-medium">Settings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="device-frame px-6">
+                    <div class="flex justify-between items-center pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+
+                    <div class="flex justify-between items-center py-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <h2 class="text-[16px] font-semibold">Add Reminder</h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+
+                    <div class="flex flex-col gap-6 pt-4">
+                        <div class="border-b border-brand-border pb-4">
+                            <input type="text" placeholder="What's the reminder?" class="bg-transparent w-full text-[18px] text-white placeholder-brand-muted outline-none">
+                        </div>
+
+                        <div class="flex flex-col gap-4">
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] flex justify-between items-center">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-[12px] text-brand-muted">Date</span>
+                                    <span class="text-[14px] font-medium">May 24, 2024</span>
+                                </div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-muted"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] flex justify-between items-center">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-[12px] text-brand-muted">Time</span>
+                                    <span class="text-[14px] font-medium">9:00 AM</span>
+                                </div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-muted"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] flex justify-between items-center">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-[12px] text-brand-muted">Repeat</span>
+                                    <span class="text-[14px] font-medium">Does not repeat</span>
+                                </div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-muted"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] flex justify-between items-center">
+                                <div class="flex flex-col gap-1">
+                                    <span class="text-[12px] text-brand-muted">Category</span>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-brand-primary"></div>
+                                        <span class="text-[14px] font-medium">Personal</span>
+                                    </div>
+                                </div>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                            <div class="bg-brand-surface p-[16px] rounded-[16px] flex flex-col gap-2">
+                                <span class="text-[12px] text-brand-muted">Notes <span class="opacity-60">(optional)</span></span>
+                                <input type="text" placeholder="Add notes..." class="bg-transparent w-full text-[14px] text-brand-muted outline-none">
+                            </div>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <span class="text-[12px] text-brand-muted px-1">Add Tags</span>
+                                <div class="flex gap-2">
+                                    <span class="px-4 py-1.5 bg-brand-surface border border-brand-border rounded-full text-[12px] text-brand-primary font-medium">Health</span>
+                                    <span class="px-4 py-1.5 bg-brand-surface border border-brand-border rounded-full text-[12px] text-brand-primary font-medium">Daily</span>
+                                    <span class="w-8 h-[30px] flex items-center justify-center bg-brand-surface border border-brand-border rounded-full text-[14px] text-brand-muted">+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="device-frame">
+                    <div class="flex justify-between items-center px-6 pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+
+                    <div class="flex justify-between items-center px-6 py-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        <h2 class="text-[16px] font-semibold flex items-center gap-1">May 2024 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+
+                    <div class="px-6 pt-4 pb-2">
+                        <div class="grid grid-cols-7 text-center text-[12px] text-brand-muted font-medium mb-4">
+                            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                        </div>
+                        <div class="grid grid-cols-7 text-center text-[14px] font-medium gap-y-6">
+                            <span class="text-brand-muted/40">29</span><span class="text-brand-muted/40">30</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+                            <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                            <span>20</span><span>21</span><span>22</span><span>23</span>
+                            <span class="bg-brand-primary text-white w-8 h-8 flex items-center justify-center rounded-full mx-auto shadow-glow">24</span>
+                            <span>25</span>
+                            <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="text-brand-muted/40">1</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 px-6 pt-6 bg-brand-bg flex flex-col gap-4 border-t border-brand-border mt-2">
+                        <h3 class="text-[16px] font-bold">Friday, May 24</h3>
+                        
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center gap-4">
+                            <span class="text-[12px] font-medium w-[60px]">9:00 AM</span>
+                            <div class="w-2 h-2 rounded-full bg-brand-water"></div>
+                            <span class="text-[14px] font-medium">Drink Water</span>
+                        </div>
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center gap-4">
+                            <span class="text-[12px] font-medium w-[60px]">10:30 AM</span>
+                            <div class="w-2 h-2 rounded-full bg-brand-standup"></div>
+                            <span class="text-[14px] font-medium">Team Standup</span>
+                        </div>
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center gap-4">
+                            <span class="text-[12px] font-medium w-[60px]">8:00 PM</span>
+                            <div class="w-2 h-2 rounded-full bg-brand-meds"></div>
+                            <span class="text-[14px] font-medium">Take Medication</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-0 w-full h-[90px] bg-[#10111A]/90 backdrop-blur-lg border-t border-brand-border px-6 flex justify-between items-center pb-4">
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                            <span class="text-[10px] font-medium">Home</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            <span class="text-[10px] text-brand-primary font-medium">Calendar</span>
+                        </div>
+                        <div class="w-[56px] h-[56px] bg-brand-primary rounded-full flex items-center justify-center shadow-glow -translate-y-5 border-[6px] border-[#10111A]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="text-[10px] font-medium">Categories</span></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="text-[10px] font-medium">Settings</span></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex gap-12">
+                
+                <div class="device-frame">
+                    <div class="flex justify-between items-center px-6 pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+
+                    <div class="flex justify-between items-center px-6 py-4">
+                        <h2 class="text-[24px] font-bold">Categories</h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </div>
+
+                    <div class="px-6 pt-2 flex flex-col gap-3">
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <span class="text-[14px] font-medium">Personal</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">6</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                                <span class="text-[14px] font-medium">Work</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">4</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                <span class="text-[14px] font-medium">Health</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">5</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFB020" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span class="text-[14px] font-medium">Shopping</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">3</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4DA3FF" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2" ry="2"></rect><path d="M12 16v-8"></path><path d="M8 12h8"></path></svg>
+                                <span class="text-[14px] font-medium">Finance</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">2</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="bg-brand-surface p-[16px] rounded-[16px] border border-brand-border flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                <span class="text-[14px] font-medium">Other</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span class="text-[12px]">1</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-0 w-full h-[90px] bg-[#10111A]/90 backdrop-blur-lg border-t border-brand-border px-6 flex justify-between items-center pb-4 z-10">
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span class="text-[10px] font-medium">Home</span></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span class="text-[10px] font-medium">Calendar</span></div>
+                        <div class="w-[56px] h-[56px] bg-brand-primary rounded-full flex items-center justify-center shadow-glow -translate-y-5 border-[6px] border-[#10111A]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            <span class="text-[10px] text-brand-primary font-medium">Categories</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="text-[10px] font-medium">Settings</span></div>
+                    </div>
+                </div>
+
+                <div class="device-frame px-6">
+                    <div class="flex justify-between items-center pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+
+                    <div class="flex justify-between items-center py-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <h2 class="text-[16px] font-semibold">Reminder Details</h2>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                    </div>
+
+                    <div class="flex flex-col gap-8 pt-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-[28px] h-[28px] rounded-full border-[2.5px] border-[#8B5CF6]"></div>
+                            <h1 class="text-[24px] font-bold">Team Standup</h1>
+                        </div>
+
+                        <div class="flex flex-col gap-5">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-standup"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                <span class="text-[14px] text-brand-standup font-medium">Today, May 24, 2024</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-standup"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span class="text-[14px] text-brand-standup font-medium">10:30 AM</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                                <span class="text-[14px] font-medium">Does not repeat</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-[20px] flex justify-center"><div class="w-3 h-3 rounded-full bg-brand-standup"></div></div>
+                                <span class="text-[14px] font-medium">Work</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-[12px] text-brand-muted">Notes</h3>
+                            <p class="text-[14px] leading-relaxed text-white/90">Daily standup meeting with the product team.</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-8 left-6 right-6 flex flex-col gap-4">
+                        <button class="w-full bg-[#1F1F35] text-[#8B5CF6] py-[16px] rounded-[16px] font-semibold text-[14px]">Edit Reminder</button>
+                        <button class="w-full bg-transparent text-brand-meds py-[16px] rounded-[16px] font-semibold text-[14px]">Delete Reminder</button>
+                    </div>
+                </div>
+
+                <div class="device-frame">
+                    <div class="flex justify-between items-center px-6 pt-4 pb-2 text-[12px] font-semibold">
+                        <span>9:41</span>
+                        <div class="flex gap-1.5"><span class="w-4 h-3 bg-white rounded-sm"></span><span class="w-3 h-3 bg-white rounded-full"></span><span class="w-5 h-3 border border-white rounded-sm"></span></div>
+                    </div>
+
+                    <div class="flex items-center px-6 py-4">
+                        <h2 class="text-[24px] font-bold">Settings</h2>
+                    </div>
+
+                    <div class="px-6 pt-2 flex flex-col gap-6 text-[14px]">
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                <span class="font-medium">Notifications</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span class="font-medium">Default Reminder Time</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span>9:00 AM</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+                                <span class="font-medium">Snooze Duration</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span>10 min</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                                <span class="font-medium">Backup & Sync</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                <span class="font-medium">Import Reminders</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+
+                        <div class="w-full h-px bg-brand-border my-2"></div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                <span class="font-medium">Theme</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-muted"><span>Dark</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                <span class="font-medium">About Doodle Reminders</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <span class="font-medium">Help & Feedback</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-muted"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-0 w-full h-[90px] bg-[#10111A]/90 backdrop-blur-lg border-t border-brand-border px-6 flex justify-between items-center pb-4 z-10">
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span class="text-[10px] font-medium">Home</span></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span class="text-[10px] font-medium">Calendar</span></div>
+                        <div class="w-[56px] h-[56px] bg-brand-primary rounded-full flex items-center justify-center shadow-glow -translate-y-5 border-[6px] border-[#10111A]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer opacity-50"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="text-[10px] font-medium">Categories</span></div>
+                        <div class="flex flex-col items-center gap-1 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C5CFF" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            <span class="text-[10px] text-brand-primary font-medium">Settings</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
