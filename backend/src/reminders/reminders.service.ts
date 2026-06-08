@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import { Reminder, ReminderDocument } from '../schemas/reminder.schema';
-import { Group, GroupDocument } from '../schemas/group.schema';
+import { Reminder, ReminderDocument } from '@/schemas/reminder.schema';
+import { Group, GroupDocument } from '@/schemas/group.schema';
 
 @Injectable()
 export class RemindersService {

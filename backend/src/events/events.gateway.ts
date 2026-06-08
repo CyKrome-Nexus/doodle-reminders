@@ -9,10 +9,10 @@ import {
 } from '@nestjs/websockets';
 import { Logger } from '@nestjs/common';
 import { Server, Socket } from 'socket.io';
-import { AuthService } from '../auth/auth.service';
-import { FriendsService } from '../friends/friends.service';
-import { GroupsService } from '../groups/groups.service';
-import { RemindersService } from '../reminders/reminders.service';
+import { AuthService } from '@/auth/auth.service';
+import { FriendsService } from '@/friends/friends.service';
+import { GroupsService } from '@/groups/groups.service';
+import { RemindersService } from '@/reminders/reminders.service';
 
 @WebSocketGateway({
   cors: {

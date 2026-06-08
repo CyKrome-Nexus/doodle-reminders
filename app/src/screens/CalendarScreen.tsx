@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import { useSocket } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
+import { useSocket } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
 
 export const CalendarScreen: React.FC = () => {

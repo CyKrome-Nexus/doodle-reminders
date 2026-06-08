@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RemindersService } from './reminders.service';
-import { Reminder, ReminderSchema } from '../schemas/reminder.schema';
-import { Group, GroupSchema } from '../schemas/group.schema';
+import { Reminder, ReminderSchema } from '@/schemas/reminder.schema';
+import { Group, GroupSchema } from '@/schemas/group.schema';
 
 @Module({
   imports: [

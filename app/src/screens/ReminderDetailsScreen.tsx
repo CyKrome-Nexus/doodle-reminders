@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView } from 'react-native';
-import { useSocket, Reminder } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
+import { useSocket, Reminder } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
 
 interface ReminderDetailsProps {

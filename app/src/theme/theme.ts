@@ -1,6 +1,6 @@
 import { useColorScheme } from 'react-native';
 import { useContext } from 'react';
-import { SocketContext } from '../context/SocketContext';
+import { SocketContext } from '@/context/SocketContext';
 
 export const colors = {
   light: {

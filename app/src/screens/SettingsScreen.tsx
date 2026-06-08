@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Switch, TouchableOpacity, ScrollView, TextInput, LayoutAnimation, Platform, UIManager } from 'react-native';
-import { useSocket } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
+import { useSocket } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
-import { BellIcon } from '../components/BellIcon';
+import { BellIcon } from '@/components/BellIcon';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);

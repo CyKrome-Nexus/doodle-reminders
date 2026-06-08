@@ -1,9 +1,9 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { Model } from 'mongoose';
-import { Reminder, ReminderDocument } from '../schemas/reminder.schema';
-import { Group, GroupDocument } from '../schemas/group.schema';
-import { EventsGateway } from '../events/events.gateway';
+import { Reminder, ReminderDocument } from '@/schemas/reminder.schema';
+import { Group, GroupDocument } from '@/schemas/group.schema';
+import { EventsGateway } from '@/events/events.gateway';
 
 @Injectable()
 export class SchedulerService implements OnModuleInit {

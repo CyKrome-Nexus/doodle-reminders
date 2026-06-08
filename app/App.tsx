@@ -7,11 +7,11 @@ import {
   Poppins_600SemiBold, 
   Poppins_700Bold 
 } from '@expo-google-fonts/poppins';
-import { SocketProvider, useSocket } from './src/context/SocketContext';
-import { AuthScreen } from './src/screens/AuthScreen';
-import { DashboardScreen } from './src/screens/DashboardScreen';
-import { DoodleAlarmOverlay } from './src/screens/DoodleAlarmOverlay';
-import { useTheme } from './src/theme/theme';
+import { SocketProvider, useSocket } from '@/context/SocketContext';
+import { AuthScreen } from '@/screens/AuthScreen';
+import { DashboardScreen } from '@/screens/DashboardScreen';
+import { DoodleAlarmOverlay } from '@/screens/DoodleAlarmOverlay';
+import { useTheme } from '@/theme/theme';
 
 // Main App Contents running inside Context
 const AppContent: React.FC = () => {

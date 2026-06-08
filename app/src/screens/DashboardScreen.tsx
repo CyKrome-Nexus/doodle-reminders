@@ -10,14 +10,14 @@ import {
   Platform,
   Modal
 } from 'react-native';
-import { useSocket, Reminder } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
-import { FriendsScreen } from './FriendsScreen';
-import { CreateReminderModal } from './CreateReminderModal';
-import { CalendarScreen } from './CalendarScreen';
-import { CategoriesScreen } from './CategoriesScreen';
-import { SettingsScreen } from './SettingsScreen';
-import { ReminderDetailsScreen } from './ReminderDetailsScreen';
+import { useSocket, Reminder } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
+import { FriendsScreen } from '@/screens/FriendsScreen';
+import { CreateReminderModal } from '@/screens/CreateReminderModal';
+import { CalendarScreen } from '@/screens/CalendarScreen';
+import { CategoriesScreen } from '@/screens/CategoriesScreen';
+import { SettingsScreen } from '@/screens/SettingsScreen';
+import { ReminderDetailsScreen } from '@/screens/ReminderDetailsScreen';
 import { Feather } from '@expo/vector-icons';
 
 type ActiveTabType = 'reminders' | 'calendar' | 'categories' | 'settings';

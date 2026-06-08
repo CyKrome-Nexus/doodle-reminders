@@ -8,9 +8,9 @@ import {
   Vibration,
   SafeAreaView
 } from 'react-native';
-import { useSocket } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
-import { BellIcon } from '../components/BellIcon';
+import { useSocket } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
+import { BellIcon } from '@/components/BellIcon';
 
 export const DoodleAlarmOverlay: React.FC = () => {
   const { colors, cleanCard, cleanButton } = useTheme();

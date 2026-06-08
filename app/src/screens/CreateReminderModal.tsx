@@ -14,8 +14,8 @@ import {
   Animated,
   PanResponder
 } from 'react-native';
-import { useSocket } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
+import { useSocket } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {

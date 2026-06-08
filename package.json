@@ -6,6 +6,12 @@
     "app",
     "backend"
   ],
+  "scripts": {
+    "start": "nx start app",
+    "android": "nx run-android app",
+    "ios": "nx run-ios app",
+    "backend:start": "nx start backend"
+  },
   "devDependencies": {
     "@nx/expo": "22.7.5",
     "@nx/react-native": "22.7.5",

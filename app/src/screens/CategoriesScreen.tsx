@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { useSocket } from '../context/SocketContext';
-import { useTheme } from '../theme/theme';
+import { useSocket } from '@/context/SocketContext';
+import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
 
 interface CategoryItem {

@@ -18,10 +18,10 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 import * as Contacts from 'expo-contacts';
-import { useSocket } from '../context/SocketContext';
+import { useSocket } from '@/context/SocketContext';
 import { Feather } from '@expo/vector-icons';
-import { BellIcon } from '../components/BellIcon';
-import { useTheme } from '../theme/theme';
+import { BellIcon } from '@/components/BellIcon';
+import { useTheme } from '@/theme/theme';
 
 WebBrowser.maybeCompleteAuthSession();
 
