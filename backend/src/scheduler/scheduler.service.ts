@@ -65,6 +65,7 @@ export class SchedulerService implements OnModuleInit {
               isGroup: !!reminder.group,
               groupName: reminder.group ? (reminder.group as any).name : null,
               creatorUsername: (reminder.creator as any).username,
+              sound: (reminder as any).sound || undefined,
             });
 
             // Dispatch list refresh

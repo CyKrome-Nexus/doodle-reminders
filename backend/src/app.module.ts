@@ -6,6 +6,7 @@ import { GroupsModule } from './groups/groups.module';
 import { RemindersModule } from './reminders/reminders.module';
 import { EventsModule } from './events/events.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
+import { UploadModule } from './upload/upload.module';
 import * as dotenv from 'dotenv';
 
 // Load environmental variables
@@ -22,6 +23,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/doodle-rem
     RemindersModule,
     EventsModule,
     SchedulerModule,
+    UploadModule,
   ],
 })
 export class AppModule {}

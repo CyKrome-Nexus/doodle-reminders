@@ -42,6 +42,21 @@ export class Reminder extends Document {
   })
   customFields: { label: string; value: string }[];
 
+  @Prop({
+    type: {
+      type: { type: String, enum: ['default', 'custom'], required: true },
+      name: { type: String, required: true },
+      uri: { type: String, required: false }
+    },
+    _id: false,
+    required: false
+  })
+  sound?: {
+    type: 'default' | 'custom';
+    name: string;
+    uri?: string;
+  };
+
   @Prop({ default: Date.now })
   createdAt: Date;
 }

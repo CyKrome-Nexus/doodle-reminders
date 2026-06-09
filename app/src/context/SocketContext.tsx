@@ -41,6 +41,11 @@ export interface Reminder {
   repeat?: string;
   tags?: string[];
   customFields?: { label: string; value: string }[];
+  sound?: {
+    type: 'default' | 'custom';
+    name: string;
+    uri?: string;
+  };
 }
 
 export interface TriggeredAlarm {
@@ -51,6 +56,11 @@ export interface TriggeredAlarm {
   isGroup: boolean;
   groupName: string | null;
   creatorUsername: string;
+  sound?: {
+    type: 'default' | 'custom';
+    name: string;
+    uri?: string;
+  };
 }
 
 export interface UserInfo {
@@ -112,7 +122,8 @@ interface SocketContextData {
     category?: string,
     repeat?: string,
     tags?: string[],
-    customFields?: { label: string; value: string }[]
+    customFields?: { label: string; value: string }[],
+    sound?: { type: 'default' | 'custom'; name: string; uri?: string }
   ) => void;
   dismissReminder: (reminderId: string) => void;
   deleteReminder: (reminderId: string) => void;
@@ -691,7 +702,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     category?: string,
     repeat?: string,
     tags?: string[],
-    customFields?: { label: string; value: string }[]
+    customFields?: { label: string; value: string }[],
+    sound?: { type: 'default' | 'custom'; name: string; uri?: string }
   ) => {
     setReminderError(null);
     if (user?.id === 'local_user') {
@@ -711,7 +723,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         category,
         repeat,
         tags,
-        customFields
+        customFields,
+        sound
       };
 
       const updated = [...reminders, newReminder];
@@ -734,7 +747,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         category,
         repeat,
         tags,
-        customFields
+        customFields,
+        sound
       });
     }
   };

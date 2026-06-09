@@ -11,6 +11,18 @@ import {
 import { useSocket } from '@/context/SocketContext';
 import { useTheme } from '@/theme/theme';
 import { BellIcon } from '@/components/BellIcon';
+import { Audio } from 'expo-av';
+
+const DEFAULT_SOUNDS: Record<string, any> = {
+  alarm_classic: require('../../assets/sounds/alarm_classic.mp3'),
+  calendar_chime: require('../../assets/sounds/calendar_chime.mp3'),
+  reminder_alert: require('../../assets/sounds/reminder_alert.mp3'),
+  hourly_chime: require('../../assets/sounds/hourly_chime.mp3'),
+  hummingbird_sweet: require('../../assets/sounds/hummingbird_sweet.mp3'),
+  memories_melody: require('../../assets/sounds/memories_melody.mp3'),
+  message_pop: require('../../assets/sounds/message_pop.mp3'),
+  tink_soft: require('../../assets/sounds/tink_soft.mp3')
+};
 
 export const DoodleAlarmOverlay: React.FC = () => {
   const { colors, cleanCard, cleanButton } = useTheme();
@@ -18,6 +30,16 @@ export const DoodleAlarmOverlay: React.FC = () => {
 
   // If there's an active alarm in the queue
   const activeAlarm = triggeredAlarms.length > 0 ? triggeredAlarms[0] : null;
+
+  // Configure audio mode on mount
+  useEffect(() => {
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      playsInSilentModeIOS: true,
+      playThroughEarpieceAndroid: false,
+      staysActiveInBackground: true,
+    }).catch(err => console.warn('Failed to set audio mode:', err));
+  }, []);
 
   // Trigger continuous pulsing haptics when alarm is ringing
   useEffect(() => {
@@ -30,6 +52,48 @@ export const DoodleAlarmOverlay: React.FC = () => {
         Vibration.cancel();
       };
     }
+  }, [activeAlarm]);
+
+  // Trigger looped sound playback when alarm is ringing
+  useEffect(() => {
+    let alarmSound: Audio.Sound | null = null;
+
+    const startAlarmSound = async () => {
+      try {
+        if (!activeAlarm) return;
+
+        let soundSource: any;
+        const soundConfig = activeAlarm.sound;
+
+        if (soundConfig && soundConfig.type === 'custom' && soundConfig.uri) {
+          soundSource = { uri: soundConfig.uri };
+        } else {
+          // Default sound fallback
+          const soundId = soundConfig?.uri || 'alarm_classic';
+          soundSource = DEFAULT_SOUNDS[soundId] || DEFAULT_SOUNDS.alarm_classic;
+        }
+
+        const { sound: newSound } = await Audio.Sound.createAsync(
+          soundSource,
+          { shouldPlay: true, isLooping: true, volume: 1.0 }
+        );
+        alarmSound = newSound;
+      } catch (err) {
+        console.warn('Failed to play alarm sound:', err);
+      }
+    };
+
+    if (activeAlarm) {
+      startAlarmSound();
+    }
+
+    return () => {
+      if (alarmSound) {
+        alarmSound.stopAsync().catch(() => {});
+        alarmSound.unloadAsync().catch(() => {});
+        alarmSound = null;
+      }
+    };
   }, [activeAlarm]);
 
   if (!activeAlarm) return null;
