@@ -19,6 +19,7 @@ import { CategoriesScreen } from '@/screens/CategoriesScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen';
 import { ReminderDetailsScreen } from '@/screens/ReminderDetailsScreen';
 import { Feather } from '@expo/vector-icons';
+import { usePermissions } from '@/hooks/usePermissions';
 
 type ActiveTabType = 'reminders' | 'calendar' | 'categories' | 'settings';
 type FilterType = 'all' | 'today' | 'upcoming' | 'completed';
@@ -26,6 +27,7 @@ type FilterType = 'all' | 'today' | 'upcoming' | 'completed';
 export const DashboardScreen: React.FC = () => {
   const { colors, isDark } = useTheme();
   const { reminders, user, dismissReminder, connected } = useSocket();
+  const { permissions, openSettings } = usePermissions();
 
   const [activeTab, setActiveTab] = useState<ActiveTabType>('reminders');
   const [filter, setFilter] = useState<FilterType>('all');
@@ -266,7 +268,6 @@ export const DashboardScreen: React.FC = () => {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
       
-      {/* Top Welcome Header Panel */}
       {activeTab === 'reminders' && (
         <View style={styles.header}>
           <View>
@@ -279,6 +280,18 @@ export const DashboardScreen: React.FC = () => {
           </View>
           <TouchableOpacity onPress={() => setFriendsVisible(true)} style={[styles.socialBtn, { borderColor: colors.border }]}>
             <Feather name="users" size={20} color={colors.ink} />
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {permissions.notifications === 'denied' && (
+        <View style={[styles.warningBanner, { backgroundColor: colors.dangerPen + '15', borderColor: colors.dangerPen }]}>
+          <Feather name="bell-off" size={18} color={colors.dangerPen} style={styles.warningIcon} />
+          <Text style={[styles.warningText, { color: colors.ink }]}>
+            Notifications disabled. Reminder alerts won't play.
+          </Text>
+          <TouchableOpacity onPress={openSettings} style={[styles.warningBtn, { backgroundColor: colors.dangerPen }]}>
+            <Text style={styles.warningBtnText}>Enable</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -538,6 +551,36 @@ const styles = StyleSheet.create({
   },
   friendsTitle: {
     fontSize: 18,
+    fontFamily: 'Poppins_600SemiBold',
+  },
+  warningBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    marginHorizontal: 24,
+    marginBottom: 16,
+  },
+  warningIcon: {
+    marginRight: 10,
+  },
+  warningText: {
+    flex: 1,
+    fontSize: 12,
+    fontFamily: 'Poppins_500Medium',
+    lineHeight: 16,
+  },
+  warningBtn: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    marginLeft: 10,
+  },
+  warningBtnText: {
+    color: '#FFFFFF',
+    fontSize: 12,
     fontFamily: 'Poppins_600SemiBold',
   },
 });

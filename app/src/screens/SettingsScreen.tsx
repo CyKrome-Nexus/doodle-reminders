@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Switch, TouchableOpacity, ScrollView, TextInput, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { StyleSheet, Text, View, Switch, TouchableOpacity, ScrollView, TextInput, LayoutAnimation, Platform, UIManager, Alert } from 'react-native';
 import { useSocket } from '@/context/SocketContext';
 import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
 import { BellIcon } from '@/components/BellIcon';
+import { usePermissions } from '@/hooks/usePermissions';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -12,6 +13,44 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 export const SettingsScreen: React.FC = () => {
   const { user, updateUserSettings, logout } = useSocket();
   const { colors, isDark } = useTheme();
+  const {
+    permissions,
+    requestNotifications,
+    requestContacts,
+    requestCamera,
+    requestMicrophone,
+    requestStorage,
+    openSettings,
+  } = usePermissions();
+
+  const handleTogglePermission = async (type: 'contacts' | 'storage' | 'camera' | 'microphone', currentStatus: string) => {
+    animateLayout();
+    if (currentStatus === 'granted') {
+      Alert.alert(
+        'Disable Permission',
+        'To disable this permission, please toggle it off in your device settings.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Open Settings', onPress: openSettings }
+        ]
+      );
+    } else if (currentStatus === 'denied') {
+      Alert.alert(
+        'Enable Permission',
+        'This permission was previously denied. Please enable it in your device settings.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Open Settings', onPress: openSettings }
+        ]
+      );
+    } else {
+      // Request permission
+      if (type === 'contacts') await requestContacts();
+      else if (type === 'storage') await requestStorage();
+      else if (type === 'camera') await requestCamera();
+      else if (type === 'microphone') await requestMicrophone();
+    }
+  };
 
   const animateLayout = () => {
     LayoutAnimation.configureNext({
@@ -250,6 +289,84 @@ export const SettingsScreen: React.FC = () => {
         </TouchableOpacity>
       </View>
 
+      {/* App Permissions Section */}
+      <View style={[styles.settingsGroupCard, { borderColor: colors.border, marginTop: 16, backgroundColor: colors.cardBg }]}>
+        <View style={[styles.settingsRow, { borderBottomColor: colors.border, paddingVertical: 12 }]}>
+          <Text style={[styles.sectionHeading, { color: colors.inkSecondary }]}>App Permissions</Text>
+        </View>
+
+        {/* Permission: Notifications (Required) */}
+        <View style={[styles.settingsRow, { borderBottomColor: colors.border }]}>
+          <View style={styles.rowLeft}>
+            <Feather name="bell" size={18} color={colors.ink} style={styles.rowIcon} />
+            <Text style={[styles.rowLabel, { color: colors.ink }]}>Notifications (Required)</Text>
+          </View>
+          {permissions.notifications === 'granted' ? (
+            <Text style={[styles.permissionStatusGranted, { color: colors.successPen }]}>Enabled</Text>
+          ) : (
+            <TouchableOpacity onPress={openSettings} style={[styles.permissionBtnEnable, { backgroundColor: colors.dangerPen }]}>
+              <Text style={styles.permissionBtnText}>Enable</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {/* Permission: Contacts */}
+        <View style={[styles.settingsRow, { borderBottomColor: colors.border }]}>
+          <View style={styles.rowLeft}>
+            <Feather name="users" size={18} color={colors.ink} style={styles.rowIcon} />
+            <Text style={[styles.rowLabel, { color: colors.ink }]}>Contacts</Text>
+          </View>
+          <Switch
+            value={permissions.contacts === 'granted'}
+            onValueChange={() => handleTogglePermission('contacts', permissions.contacts)}
+            trackColor={{ false: '#CED4DA', true: colors.marginLine + '60' }}
+            thumbColor={permissions.contacts === 'granted' ? colors.marginLine : '#F8F9FA'}
+          />
+        </View>
+
+        {/* Permission: Storage */}
+        <View style={[styles.settingsRow, { borderBottomColor: colors.border }]}>
+          <View style={styles.rowLeft}>
+            <Feather name="hard-drive" size={18} color={colors.ink} style={styles.rowIcon} />
+            <Text style={[styles.rowLabel, { color: colors.ink }]}>Storage</Text>
+          </View>
+          <Switch
+            value={permissions.storage === 'granted'}
+            onValueChange={() => handleTogglePermission('storage', permissions.storage)}
+            trackColor={{ false: '#CED4DA', true: colors.marginLine + '60' }}
+            thumbColor={permissions.storage === 'granted' ? colors.marginLine : '#F8F9FA'}
+          />
+        </View>
+
+        {/* Permission: Camera */}
+        <View style={[styles.settingsRow, { borderBottomColor: colors.border }]}>
+          <View style={styles.rowLeft}>
+            <Feather name="camera" size={18} color={colors.ink} style={styles.rowIcon} />
+            <Text style={[styles.rowLabel, { color: colors.ink }]}>Camera</Text>
+          </View>
+          <Switch
+            value={permissions.camera === 'granted'}
+            onValueChange={() => handleTogglePermission('camera', permissions.camera)}
+            trackColor={{ false: '#CED4DA', true: colors.marginLine + '60' }}
+            thumbColor={permissions.camera === 'granted' ? colors.marginLine : '#F8F9FA'}
+          />
+        </View>
+
+        {/* Permission: Microphone */}
+        <View style={styles.settingsRow}>
+          <View style={styles.rowLeft}>
+            <Feather name="mic" size={18} color={colors.ink} style={styles.rowIcon} />
+            <Text style={[styles.rowLabel, { color: colors.ink }]}>Microphone</Text>
+          </View>
+          <Switch
+            value={permissions.microphone === 'granted'}
+            onValueChange={() => handleTogglePermission('microphone', permissions.microphone)}
+            trackColor={{ false: '#CED4DA', true: colors.marginLine + '60' }}
+            thumbColor={permissions.microphone === 'granted' ? colors.marginLine : '#F8F9FA'}
+          />
+        </View>
+      </View>
+
       {/* Sign Out Button */}
       <TouchableOpacity onPress={logout} style={styles.logoutButton} activeOpacity={0.8}>
         <Text style={[styles.logoutText, { color: colors.dangerPen }]}>Sign Out</Text>
@@ -400,6 +517,28 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     fontSize: 15,
+    fontFamily: 'Poppins_600SemiBold',
+  },
+  sectionHeading: {
+    fontSize: 11,
+    fontFamily: 'Poppins_600SemiBold',
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+  },
+  permissionStatusGranted: {
+    fontSize: 13,
+    fontFamily: 'Poppins_600SemiBold',
+    marginRight: 6,
+  },
+  permissionBtnEnable: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    marginRight: 6,
+  },
+  permissionBtnText: {
+    color: '#FFFFFF',
+    fontSize: 12,
     fontFamily: 'Poppins_600SemiBold',
   },
 });
