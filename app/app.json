@@ -8,16 +8,32 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSContactsUsageDescription": "Doodle Reminders needs access to your contacts to help you find and add friends.",
+        "NSCameraUsageDescription": "Doodle Reminders needs access to your camera to capture sketches, photos, or doodles for reminders.",
+        "NSMicrophoneUsageDescription": "Doodle Reminders needs access to your microphone to record audio notes for your reminders.",
+        "NSPhotoLibraryUsageDescription": "Doodle Reminders needs access to your photo library to save and load custom doodles or images.",
+        "NSPhotoLibraryAddUsageDescription": "Doodle Reminders needs access to your photo library to save custom doodles."
+      }
     },
     "android": {
+      "package": "com.CyKromeNexus.DoodleReminders",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "CAMERA",
+        "READ_CONTACTS",
+        "WRITE_CONTACTS",
+        "RECORD_AUDIO",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Platform } from 'react-native';
 import { 
   useFonts, 
@@ -12,11 +12,18 @@ import { AuthScreen } from '@/screens/AuthScreen';
 import { DashboardScreen } from '@/screens/DashboardScreen';
 import { DoodleAlarmOverlay } from '@/screens/DoodleAlarmOverlay';
 import { useTheme } from '@/theme/theme';
+import { usePermissions } from '@/hooks/usePermissions';
 
 // Main App Contents running inside Context
 const AppContent: React.FC = () => {
   const { colors } = useTheme();
   const { isAuthenticated, user } = useSocket();
+  const { requestNotifications } = usePermissions();
+
+  useEffect(() => {
+    // Request required Notification permission when the app starts
+    requestNotifications();
+  }, []);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
