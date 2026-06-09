@@ -420,7 +420,8 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       category?: string;
       repeat?: string;
       tags?: string[];
-      customFields?: { label: string; value: string }[]
+      customFields?: { label: string; value: string }[];
+      sound?: { type: 'default' | 'custom'; name: string; uri?: string }
     },
   ) {
     const userId = client.data.userId;
@@ -437,7 +438,8 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         data.category,
         data.repeat,
         data.tags,
-        data.customFields
+        data.customFields,
+        data.sound
       );
 
       // Alert members

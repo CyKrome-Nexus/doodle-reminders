@@ -23,7 +23,8 @@ export class RemindersService {
     category?: string,
     repeat?: string,
     tags?: string[],
-    customFields?: { label: string; value: string }[]
+    customFields?: { label: string; value: string }[],
+    sound?: { type: 'default' | 'custom'; name: string; uri?: string }
   ): Promise<ReminderDocument> {
     this.logger.log(`Creating reminder "${title}" by creator ID ${creatorId} (Group ID: ${groupId || 'None'})`);
     
@@ -49,7 +50,8 @@ export class RemindersService {
       category: category || 'Personal',
       repeat: repeat || 'Does not repeat',
       tags: tags || [],
-      customFields: customFields || []
+      customFields: customFields || [],
+      sound: sound || undefined
     });
 
     await newReminder.save();
@@ -97,7 +99,8 @@ export class RemindersService {
       category: r.category || 'Personal',
       repeat: r.repeat || 'Does not repeat',
       tags: r.tags || [],
-      customFields: r.customFields || []
+      customFields: r.customFields || [],
+      sound: r.sound || undefined
     }));
   }
 

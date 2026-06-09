@@ -12,15 +12,30 @@ import {
   LayoutAnimation,
   UIManager,
   Animated,
-  PanResponder
+  PanResponder,
+  Alert
 } from 'react-native';
 import { useSocket } from '@/context/SocketContext';
 import { useTheme } from '@/theme/theme';
 import { Feather } from '@expo/vector-icons';
+import { usePermissions } from '@/hooks/usePermissions';
+import { Audio } from 'expo-av';
+import * as DocumentPicker from 'expo-document-picker';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
+const DEFAULT_SOUNDS = [
+  { id: 'alarm_classic', name: 'Alarm Classic', asset: require('../../assets/sounds/alarm_classic.mp3') },
+  { id: 'calendar_chime', name: 'Calendar Chime', asset: require('../../assets/sounds/calendar_chime.mp3') },
+  { id: 'reminder_alert', name: 'Reminder Alert', asset: require('../../assets/sounds/reminder_alert.mp3') },
+  { id: 'hourly_chime', name: 'Hourly Chime', asset: require('../../assets/sounds/hourly_chime.mp3') },
+  { id: 'hummingbird_sweet', name: 'Hummingbird Sweet', asset: require('../../assets/sounds/hummingbird_sweet.mp3') },
+  { id: 'memories_melody', name: 'Memories Melody', asset: require('../../assets/sounds/memories_melody.mp3') },
+  { id: 'message_pop', name: 'Message Pop', asset: require('../../assets/sounds/message_pop.mp3') },
+  { id: 'tink_soft', name: 'Tink Soft', asset: require('../../assets/sounds/tink_soft.mp3') }
+];
 
 const Collapsible: React.FC<{ expanded: boolean; height: number; children: React.ReactNode }> = ({ expanded, height, children }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
@@ -196,11 +211,141 @@ const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 export const CreateReminderModal: React.FC<CreateReminderModalProps> = ({ visible, onClose }) => {
   const { colors, isDark } = useTheme();
-  const { groups, createReminder, reminderError } = useSocket();
+  const { groups, createReminder, reminderError, serverUrl, user } = useSocket();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [groupId, setGroupId] = useState<string>('');
+
+  // Sound selection state
+  const [soundOption, setSoundOption] = useState<{ type: 'default' | 'custom'; name: string; uri?: string }>({
+    type: 'default',
+    name: 'Alarm Classic',
+    uri: 'alarm_classic'
+  });
+  const [showSoundSelector, setShowSoundSelector] = useState(false);
+  const playbackSoundRef = useRef<Audio.Sound | null>(null);
+
+  const { permissions, requestStorage, openSettings } = usePermissions();
+
+  // Stop and unload preview sound on close/unmount
+  useEffect(() => {
+    return () => {
+      if (playbackSoundRef.current) {
+        playbackSoundRef.current.unloadAsync().catch(() => {});
+        playbackSoundRef.current = null;
+      }
+    };
+  }, [visible]);
+
+  const playSoundPreview = async (soundItem: typeof soundOption) => {
+    try {
+      // Unload previous sound first
+      if (playbackSoundRef.current) {
+        await playbackSoundRef.current.stopAsync().catch(() => {});
+        await playbackSoundRef.current.unloadAsync().catch(() => {});
+        playbackSoundRef.current = null;
+      }
+
+      let soundSource: any;
+
+      if (soundItem.type === 'default') {
+        const found = DEFAULT_SOUNDS.find(s => s.id === soundItem.uri);
+        if (found) {
+          soundSource = found.asset;
+        } else {
+          return;
+        }
+      } else {
+        if (!soundItem.uri) return;
+        soundSource = { uri: soundItem.uri };
+      }
+
+      const { sound: newSound } = await Audio.Sound.createAsync(
+        soundSource,
+        { shouldPlay: true, volume: 0.8 }
+      );
+      playbackSoundRef.current = newSound;
+    } catch (err) {
+      console.warn('Failed to play sound preview:', err);
+    }
+  };
+
+  const handlePickCustomSound = async () => {
+    try {
+      let currentPermission = permissions.storage;
+      
+      if (currentPermission === 'undetermined') {
+        currentPermission = await requestStorage();
+      }
+
+      if (currentPermission === 'denied') {
+        Alert.alert(
+          'Permission Required',
+          'Storage permission is required to select custom audio files from your device. Please enable it in Settings.',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Open Settings', onPress: openSettings }
+          ]
+        );
+        return;
+      }
+
+      const res = await DocumentPicker.getDocumentAsync({
+        type: 'audio/*',
+        copyToCacheDirectory: true
+      });
+
+      if (res.canceled || !res.assets || res.assets.length === 0) {
+        return;
+      }
+
+      const file = res.assets[0];
+      const fileName = file.name || 'custom_audio.mp3';
+      const fileUri = file.uri;
+      const isOnlineUser = user && user.id !== 'local_user';
+
+      if (isOnlineUser) {
+        const formData = new FormData();
+        // Modern React Native fetch FormData upload format
+        formData.append('file', {
+          uri: fileUri,
+          name: fileName,
+          type: file.mimeType || 'audio/mpeg'
+        } as any);
+
+        const response = await fetch(`${serverUrl}/upload`, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Upload failed');
+        }
+
+        const data = await response.json();
+        setSoundOption({
+          type: 'custom',
+          name: fileName,
+          uri: data.url
+        });
+      } else {
+        // Offline / Local User: store local uri directly without uploading
+        setSoundOption({
+          type: 'custom',
+          name: fileName,
+          uri: fileUri
+        });
+      }
+      setShowSoundSelector(false);
+    } catch (err: any) {
+      console.error('Failed to pick custom sound:', err);
+      Alert.alert('Error', 'Failed to load or upload custom sound file.');
+    }
+  };
 
   // Custom metadata fields
   const [category, setCategory] = useState('Personal');
@@ -379,7 +524,8 @@ export const CreateReminderModal: React.FC<CreateReminderModalProps> = ({ visibl
       finalCategory || 'Personal',
       repeat,
       tags,
-      customFields
+      customFields,
+      soundOption
     );
 
     // Reset inputs
@@ -390,6 +536,12 @@ export const CreateReminderModal: React.FC<CreateReminderModalProps> = ({ visibl
     setCustomCategory('');
     setShowCustomCategoryInput(false);
     setRepeat('Does not repeat');
+    setSoundOption({
+      type: 'default',
+      name: 'Alarm Classic',
+      uri: 'alarm_classic'
+    });
+    setShowSoundSelector(false);
     setTags(['Health', 'Daily']);
     setCustomFields([]);
     setCustomDueTime(new Date(Date.now() + 5 * 60 * 1000));
@@ -649,6 +801,65 @@ export const CreateReminderModal: React.FC<CreateReminderModalProps> = ({ visibl
                   </TouchableOpacity>
                 ))}
               </View>
+            </Collapsible>
+
+            {/* Sound Selector */}
+            <View style={styles.inputLabelRow}>
+              <Text style={[styles.inputLabelText, { color: colors.inkSecondary }]}>Reminder Sound</Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                setShowSoundSelector(!showSoundSelector);
+              }}
+              activeOpacity={0.8}
+              style={[styles.formRow, { borderColor: colors.border }]}
+            >
+              <Text style={[styles.formRowText, { color: colors.ink }]}>
+                {soundOption.type === 'default' ? soundOption.name : `Custom: ${soundOption.name}`}
+              </Text>
+              <Feather name="music" size={18} color={colors.inkSecondary} />
+            </TouchableOpacity>
+
+            <Collapsible expanded={showSoundSelector} height={260}>
+              <ScrollView
+                nestedScrollEnabled={true}
+                style={[styles.selectorDropdown, { borderColor: colors.border, backgroundColor: colors.cardBg, maxHeight: 250 }]}
+              >
+                {DEFAULT_SOUNDS.map(soundItem => {
+                  const isSelected = soundOption.type === 'default' && soundOption.uri === soundItem.id;
+                  return (
+                    <TouchableOpacity
+                      key={soundItem.id}
+                      style={[
+                        styles.dropdownOption,
+                        { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }
+                      ]}
+                      onPress={() => {
+                        const nextSound = { type: 'default' as const, name: soundItem.name, uri: soundItem.id };
+                        setSoundOption(nextSound);
+                        playSoundPreview(nextSound);
+                      }}
+                    >
+                      <Text style={[styles.dropdownOptionText, { color: colors.ink, fontFamily: isSelected ? 'Poppins_600SemiBold' : 'Poppins_500Medium' }]}>
+                        {soundItem.name}
+                      </Text>
+                      {isSelected && <Feather name="check" size={16} color={colors.marginLine} />}
+                    </TouchableOpacity>
+                  );
+                })}
+                <TouchableOpacity
+                  style={[
+                    styles.dropdownOption,
+                    { borderTopWidth: 1, borderTopColor: colors.border, backgroundColor: colors.marginLine + '10', flexDirection: 'row', alignItems: 'center' }
+                  ]}
+                  onPress={handlePickCustomSound}
+                >
+                  <Feather name="plus" size={16} color={colors.marginLine} style={{ marginRight: 8 }} />
+                  <Text style={[styles.dropdownOptionText, { color: colors.marginLine }]}>
+                    + Custom Audio File...
+                  </Text>
+                </TouchableOpacity>
+              </ScrollView>
             </Collapsible>
 
             {/* Category Selector */}
