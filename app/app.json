@@ -15,12 +15,13 @@
         "NSMicrophoneUsageDescription": "Doodle Reminders needs access to your microphone to record audio notes for your reminders.",
         "NSPhotoLibraryUsageDescription": "Doodle Reminders needs access to your photo library to save and load custom doodles or images.",
         "NSPhotoLibraryAddUsageDescription": "Doodle Reminders needs access to your photo library to save custom doodles."
-      }
+      },
+      "bundleIdentifier": "com.CyKromeNexus.DoodleReminders"
     },
     "android": {
       "package": "com.CyKromeNexus.DoodleReminders",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#7C5CFF",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
